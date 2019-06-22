@@ -142,6 +142,11 @@ class Geo(GeoChartBase):
             if type_ == ChartType.LINES:
                 f, t = self.get_coordinate(n), self.get_coordinate(v)
                 result.append({"name": "{}->{}".format(n, v), "coords": [f, t]})
+            elif isinstance(v, dict):
+                lng = v.get('lng')
+                lat = v.get('lat')
+                v = 1
+                result.append({"name": n, "value": [lng, lat, v]})
             else:
                 lng, lat = self.get_coordinate(n)
                 result.append({"name": n, "value": [lng, lat, v]})
